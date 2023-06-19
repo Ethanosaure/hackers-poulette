@@ -14,7 +14,7 @@ if(isset($_POST['button'])){
     $sanitized_name = htmlspecialchars($name, ENT_QUOTES, 'UTF-8');
     $sanitized_firstname = htmlspecialchars($firstname, ENT_QUOTES, 'UTF-8');
     $sanitized_email = filter_var($email, FILTER_SANITIZE_EMAIL);
-    $sanitized_description = htmlspecialchars($description, ENT_QUOTES, 'UTF-8');
+    $sanitized_description = str_replace(['<', '>', '$', '#' , '[', ']', '}', '{'], '', $description);
 
     $check = true;
     if ($sanitized_name !== $name ){
@@ -44,8 +44,8 @@ if(isset($_POST['button'])){
     if (empty($sanitized_description)){
         $check = false;
         echo 'the "description" input should not be empty'."<br>" ;
+    }
     
-
 
     if (!filter_var($sanitized_email, FILTER_VALIDATE_EMAIL)) {
         $check = false;
@@ -53,19 +53,18 @@ if(isset($_POST['button'])){
     }
 
     if ($check){
-        // $req = 'INSERT INTO support (name, firstname, email, description) VALUES (?,?,?,?)';
-        // $query = $bdd->prepare($req);
-        // $query->bindParam(1, $sanitized_name);
-        // $query->bindParam(2, $sanitized_firstname);
-        // $query->bindParam(3, $sanitized_email);
-        // $query->bindParam(4, $sanitized_description);
-        // $query->execute();
+        $req = 'INSERT INTO support (name, firstname, email, description) VALUES (?,?,?,?)';
+        $query = $bdd->prepare($req);
+        $query->bindParam(1, $sanitized_name);
+        $query->bindParam(2, $sanitized_firstname);
+        $query->bindParam(3, $sanitized_email);
+        $query->bindParam(4, $sanitized_description);
+        $query->execute();
         echo 'envoyé avec succes';
         } else {
             echo 'error';
         }
-}
-}
+    }
 
 ?>
 
@@ -78,14 +77,14 @@ if(isset($_POST['button'])){
 </head>
 <body>
     <form method='POST'>
-        <label for='name'>name</label>
+        <label for='name'>name:</label>
         <input type='text' name='name' value='' placeholder="name"> <br>
-        <label for='firstname'>firstname</label>
+        <label for='firstname'>firstname:</label>
         <input type='text' name='firstname' value='' placeholder='firstname'><br>
-        <label for='email'>email</label>
+        <label for='email'>email:</label>
         <input type ='email' name='email' value='' placeholder='email'><br>
-        <label for='description'>description</label>
-        <input type='text' name='description' value='' placeholder='explain your problem'><br>
+        <label for='description'>description:</label>
+        <input type='text' name='description' value='' placeholder='max 1000 char.'><br>
         <button type='submit' name='button'>Send</button>
     </form>
     
