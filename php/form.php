@@ -73,7 +73,7 @@ if(isset($_POST['button'])){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <title>Contact Support</title>
 </head>
 <body>
@@ -130,7 +130,7 @@ if(isset($_POST['button'])){
     }
     }
     ?>
-    <input type="text" name='honey' class="honey" value=''><br>
+    <input type="text" name='honey' class="honey" value=''>
         <button type='submit' name='button'>Send</button>
     </form>
     
