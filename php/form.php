@@ -6,25 +6,65 @@ require 'access.php';
 
 
 if(isset($_POST['button'])){
-    $_POST['name']=$name;
-    $_POST['firstname']=$firstname;
-    $_POST['email']=$email;
-    $_POST['description']=$description;
-    $sanitized_name=filter_var($name, FILTER_SANITIZE_NAME);
-    $sanitized_firstname=filter_var($firstname, FILTER_SANITIZE_FIRSTNAME);
-    $sanitized_email=filter_var($email, FILTER_SANITIZE_EMAIL);
-    $sanitized_descripion=filter_var($descripion, FILTER_SANITIZE_DESCRIPTION);
-    if(filter_var($sanitized_name, FILTER_VALIDATE_NAME) 
-    && filter_var($sanitized_firstname, FILTER_VALIDATE_FIRSTNAME) 
-    && filter_var($sanitized_email, FILTER_VALIDATE_EMAIL)
-    && filter_var($sanitized_descripion, FILTER_VALIDATE_DESCRIPTION)){
-    $req = 'INSERT INTO support (name, firstname, email, description) VALUES (?,?,?,?)';
-    $query = $bdd->prepare([$sanitized_name, $sanitized_firstname, $sanitized_email, $sanitized_descripion]);
-    $query->execute();
+    $name=$_POST['name'];
+    $firstname=$_POST['firstname'];
+    $email=$_POST['email'];
+    $description=$_POST['description'];
 
+    $sanitized_name = htmlspecialchars($name, ENT_QUOTES, 'UTF-8');
+    $sanitized_firstname = htmlspecialchars($firstname, ENT_QUOTES, 'UTF-8');
+    $sanitized_email = filter_var($email, FILTER_SANITIZE_EMAIL);
+    $sanitized_description = htmlspecialchars($description, ENT_QUOTES, 'UTF-8');
+
+    $check = true;
+    if ($sanitized_name !== $name ){
+        $check = false;
+        echo 'remove the special characters from your "name" input'."<br>";
+    }
+    if (empty($sanitized_name)){
+        $check = false;
+        echo 'the "name" input should not be empty'."<br>";
     }
 
-  
+
+     if ($sanitized_firstname !== $firstname ){
+        $check = false;
+        echo 'remove the special characters from your "firstname" input'."<br>";
+    }
+    if (empty($sanitized_firstname)){
+        $check = false;
+        echo 'the "firstname" input should not be empty'."<br>";
+    }
+
+
+     if ($sanitized_description !== $description ){
+        $check = false;
+        echo 'remove the special characters from your "description" input'."<br>" ;
+    }
+    if (empty($sanitized_description)){
+        $check = false;
+        echo 'the "description" input should not be empty'."<br>" ;
+    
+
+
+    if (!filter_var($sanitized_email, FILTER_VALIDATE_EMAIL)) {
+        $check = false;
+        echo 'email invalid'."<br>";
+    }
+
+    if ($check){
+        // $req = 'INSERT INTO support (name, firstname, email, description) VALUES (?,?,?,?)';
+        // $query = $bdd->prepare($req);
+        // $query->bindParam(1, $sanitized_name);
+        // $query->bindParam(2, $sanitized_firstname);
+        // $query->bindParam(3, $sanitized_email);
+        // $query->bindParam(4, $sanitized_description);
+        // $query->execute();
+        echo 'envoyé avec succes';
+        } else {
+            echo 'error';
+        }
+}
 }
 
 ?>
