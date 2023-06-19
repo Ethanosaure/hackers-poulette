@@ -47,7 +47,6 @@ if(isset($_POST['button'])){
         $check = false;
       
     }
-   
 
     if ($check){
         $req = 'INSERT INTO support (name, firstname, email, description) VALUES (?,?,?,?)';
@@ -77,7 +76,7 @@ if(isset($_POST['button'])){
     <title>Contact Support</title>
 </head>
 <body>
-    <form method='POST'>
+    <form method='POST' enctype="multipart/form-data">
         <label for='name'>name:</label>
         <input type='text' name='name' value='' placeholder="name"> <br>
          <?php
@@ -130,6 +129,7 @@ if(isset($_POST['button'])){
     }
     }
     ?>
+    <input type="File" name='file'>
     <input type="text" name='honey' class="honey" value=''>
         <button type='submit' name='button'>Send</button>
     </form>
