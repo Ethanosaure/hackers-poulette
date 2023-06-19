@@ -10,10 +10,21 @@ if(isset($_POST['button'])){
     $_POST['firstname']=$firstname;
     $_POST['email']=$email;
     $_POST['description']=$description;
-
+    $sanitized_name=filter_var($name, FILTER_SANITIZE_NAME);
+    $sanitized_firstname=filter_var($firstname, FILTER_SANITIZE_FIRSTNAME);
+    $sanitized_email=filter_var($email, FILTER_SANITIZE_EMAIL);
+    $sanitized_descripion=filter_var($descripion, FILTER_SANITIZE_DESCRIPTION);
+    if(filter_var($sanitized_name, FILTER_VALIDATE_NAME) 
+    && filter_var($sanitized_firstname, FILTER_VALIDATE_FIRSTNAME) 
+    && filter_var($sanitized_email, FILTER_VALIDATE_EMAIL)
+    && filter_var($sanitized_descripion, FILTER_VALIDATE_DESCRIPTION)){
     $req = 'INSERT INTO support (name, firstname, email, description) VALUES (?,?,?,?)';
-$query = $bdd->prepare([$name, $firstname, $email, $desciption]);
-$query->execute();
+    $query = $bdd->prepare([$sanitized_name, $sanitized_firstname, $sanitized_email, $sanitized_descripion]);
+    $query->execute();
+
+    }
+
+  
 }
 
 ?>
