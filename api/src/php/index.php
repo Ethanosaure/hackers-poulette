@@ -61,14 +61,14 @@ if (isset($_POST['button'])) {
         '',
         $description
     );
-    $to = $sanitized_email;
-    $headers = 'From: the supercool site you come from';
-    $email_subject = 'a supercool message';
-    $email_body = "you just got a new message from the supercool site you come from";
+    // $to = $sanitized_email;
+    // $headers = 'From: the supercool site you come from';
+    // $email_subject = 'a supercool message';
+    // $email_body = "you just got a new message from the supercool site you come from";
 
     $check = true;
     if ($honey) {
-        echo 'bien tenté le spam gros nullos';
+        echo '<p>' . 'bien tenté le spam gros nullos'.'</p>';
         exit();
     } else {
         if ($sanitized_firstname !== $firstname) {
@@ -111,11 +111,11 @@ if (isset($_POST['button'])) {
                     }
 
                 $query->execute();
-                echo 'envoyé avec succes';
-                mail($to, $email_subject, $email_body, $headers);
-                echo 'check your mails!';
+                echo '<sapn>' . 'envoyé avec succes'.'</span>' ;
+                // mail($to, $email_subject, $email_body, $headers);
+                // echo 'check your mails!';
             } else {
-                echo 'error: please enter your information correclty';
+                echo '<span>' . 'error: please enter your information correclty'.'</span>' ;
             }
         }
     }
@@ -132,17 +132,19 @@ if (isset($_POST['button'])) {
 </head>
 <body>
     <form method='POST' enctype="multipart/form-data">
+        <h1>Contact Support</h1>
+
         <label for='name' id='name'>name:</label>
         <input type='text' name='name' value='' placeholder="name"> <br>
          <?php if (isset($_POST['button'])) {
              if ($sanitized_name !== $name) {
                  $check = false;
-                 echo 'remove the special characters from your "name" input' .
+                 echo '<p>' . 'remove the special characters from your "name" input' .'</p>' .
                      "<br>";
              }
              if (empty($sanitized_name)) {
                  $check = false;
-                 echo 'the "name" input should not be empty' . "<br>";
+                 echo '<p>' . 'the "name" input should not be empty'.'</p>' . "<br>";
              }
          } ?>
         <label for='firstname'>firstname:</label>
@@ -150,12 +152,12 @@ if (isset($_POST['button'])) {
         <?php if (isset($_POST['button'])) {
             if ($sanitized_firstname !== $firstname) {
                 $check = false;
-                echo 'remove the special characters from your "firstname" input' .
+                echo '<p>'.'remove the special characters from your "firstname" input'.'</p>' .
                     "<br>";
             }
             if (empty($sanitized_firstname)) {
                 $check = false;
-                echo 'the "firstname" input should not be empty' . "<br>";
+                echo '<p>' . 'the "firstname" input should not be empty' .'</p>' . "<br>";
             }
         } ?>
         <label for='email'>email:</label>
@@ -163,26 +165,28 @@ if (isset($_POST['button'])) {
         <?php if (isset($_POST['button'])) {
             if (!filter_var($sanitized_email, FILTER_VALIDATE_EMAIL)) {
                 $check = false;
-                echo 'email invalid' . "<br>";
+                echo '<p>'.'email invalid'.'</p>' . "<br>";
             }
         } ?>
         <label for='description'>description:</label>
-        <input type='text' name='description' value='' placeholder='max 1000 char.' class="description"><br>
+        <textarea name='description' value='' placeholder='max 1000 char.' class="description"></textarea><br>
         <?php if (isset($_POST['button'])) {
             if ($sanitized_description !== $description) {
                 $check = false;
-                echo 'remove the special characters from your "description" input' .
+                echo '<p>'.'remove the special characters from your "description" input' .'</p>' .
                     "<br>";
             }
             if (empty($sanitized_description)) {
                 $check = false;
-                echo 'the "description" input should not be empty' . "<br>";
+                echo '<p>'.'the "description" input should not be empty'.'</p>' . "<br>";
             }
         } ?>
     <input type="File" name='file' maxlength="2097152" accept="image/jpg, image/png, image/gif">
 
     <input type="text" name='honey' class="honey" value=''>
         <button type='submit' name='button'>Send</button>
+        <?php
+        ?>
     </form>
     
 </body>
