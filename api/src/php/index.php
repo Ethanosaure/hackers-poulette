@@ -127,12 +127,12 @@ if (isset($_POST['button'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="..\css\style.css">
     <title>Contact Support</title>
 </head>
 <body>
     <form method='POST' enctype="multipart/form-data">
-        <label for='name'>name:</label>
+        <label for='name' id='name'>name:</label>
         <input type='text' name='name' value='' placeholder="name"> <br>
          <?php if (isset($_POST['button'])) {
              if ($sanitized_name !== $name) {
@@ -167,7 +167,7 @@ if (isset($_POST['button'])) {
             }
         } ?>
         <label for='description'>description:</label>
-        <input type='text' name='description' value='' placeholder='max 1000 char.'><br>
+        <input type='text' name='description' value='' placeholder='max 1000 char.' class="description"><br>
         <?php if (isset($_POST['button'])) {
             if ($sanitized_description !== $description) {
                 $check = false;

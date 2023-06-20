@@ -1,3 +1,25 @@
 .honey {
   display: none;
 }
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+form {
+  padding: 20px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  border: 1px solid black;
+}
+form .description {
+  width: 250px;
+  height: 100px;
+}
+form input {
+  padding: 10px;
+  margin: 15px;
+}/*# sourceMappingURL=style.css.map */
