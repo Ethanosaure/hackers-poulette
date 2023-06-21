@@ -35,7 +35,7 @@ if (isset($_POST['button'])) {
         );
     } else {
         // validation succes
-        $target = "Desktop\Photos.Images" . basename($_FILES['file']["name"]);
+        $target = "../images" . basename($_FILES['file']["name"]);
         if (move_uploaded_file($_FILES['file']['tmp_name'], $target)) {
             $response = array (
                 'type' => 'success',
@@ -61,10 +61,10 @@ if (isset($_POST['button'])) {
         '',
         $description
     );
-    // $to = $sanitized_email;
-    // $headers = 'From: the supercool site you come from';
-    // $email_subject = 'a supercool message';
-    // $email_body = "you just got a new message from the supercool site you come from";
+    $to = $sanitized_email;
+    $headers = 'From: the supercool site you come from';
+    $email_subject = 'a supercool message';
+    $email_body = "you just got a new message from the supercool site you come from";
 
     $check = true;
     if ($honey) {
@@ -112,8 +112,8 @@ if (isset($_POST['button'])) {
 
                 $query->execute();
                 echo '<sapn>' . 'envoyé avec succes'.'</span>' ;
-                // mail($to, $email_subject, $email_body, $headers);
-                // echo 'check your mails!';
+                mail($to, $email_subject, $email_body, $headers);
+                echo 'check your mails!';
             } else {
                 echo '<span>' . 'error: please enter your information correclty'.'</span>' ;
             }
