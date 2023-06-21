@@ -5,6 +5,8 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    background-color:#B3B6B7;
 }
 form{
     padding: 20px;
@@ -12,7 +14,7 @@ form{
     justify-content: space-around;
     flex-direction: column;
     border: 1px solid black;
-    width: 900px;
+    background-color: #F7F3E3;
     .description{
         width:250px;
         height:100px
@@ -22,4 +24,9 @@ form{
         padding: 10px;
         margin: 15px;
     }
+}
+span{
+    border: 1px solid black;
+    padding:15px;
+    background-color: #AF9164;
 }

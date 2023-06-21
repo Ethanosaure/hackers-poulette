@@ -61,10 +61,10 @@ if (isset($_POST['button'])) {
         '',
         $description
     );
-    $to = $sanitized_email;
-    $headers = 'From: the supercool site you come from';
-    $email_subject = 'a supercool message';
-    $email_body = "you just got a new message from the supercool site you come from";
+    // $to = $sanitized_email;
+    // $headers = 'From: the supercool site you come from';
+    // $email_subject = 'a supercool message';
+    // $email_body = "you just got a new message from the supercool site you come from";
 
     $check = true;
     if ($honey) {
@@ -112,8 +112,8 @@ if (isset($_POST['button'])) {
 
                 $query->execute();
                 echo '<sapn>' . 'envoyé avec succes'.'</span>' ;
-                mail($to, $email_subject, $email_body, $headers);
-                echo 'check your mails!';
+                // mail($to, $email_subject, $email_body, $headers);
+                // echo 'check your mails!';
             } else {
                 echo '<span>' . 'error: please enter your information correclty'.'</span>' ;
             }
@@ -184,7 +184,7 @@ if (isset($_POST['button'])) {
     <input type="File" name='file' maxlength="2097152" accept="image/jpg, image/png, image/gif">
 
     <input type="text" name='honey' class="honey" value=''>
-        <button type='submit' name='button'>Send</button>
+        <input type='submit' name='button'>
         <?php
         ?>
     </form>
