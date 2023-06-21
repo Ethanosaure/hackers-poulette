@@ -135,7 +135,7 @@ if (isset($_POST['button'])) {
         <h1>Contact Support</h1>
 
         <label for='name' id='name'>name:</label>
-        <input type='text' name='name' value='' placeholder="name"> <br>
+        <input type='text' name='name' value='' placeholder="name" maxlength='255'> <br>
          <?php if (isset($_POST['button'])) {
              if ($sanitized_name !== $name) {
                  $check = false;
@@ -148,7 +148,7 @@ if (isset($_POST['button'])) {
              }
          } ?>
         <label for='firstname'>firstname:</label>
-        <input type='text' name='firstname' value='' placeholder='firstname'><br>
+        <input type='text' name='firstname' value='' placeholder='firstname' maxlength='255'><br>
         <?php if (isset($_POST['button'])) {
             if ($sanitized_firstname !== $firstname) {
                 $check = false;
@@ -161,7 +161,7 @@ if (isset($_POST['button'])) {
             }
         } ?>
         <label for='email'>email:</label>
-        <input type ='email' name='email' value='' placeholder='email'><br>
+        <input type ='email' name='email' value='' placeholder='email' maxlength='255'><br>
         <?php if (isset($_POST['button'])) {
             if (!filter_var($sanitized_email, FILTER_VALIDATE_EMAIL)) {
                 $check = false;
@@ -169,7 +169,7 @@ if (isset($_POST['button'])) {
             }
         } ?>
         <label for='description'>description:</label>
-        <textarea name='description' value='' placeholder='max 1000 char.' class="description"></textarea><br>
+        <textarea name='description' value='' placeholder='max 1000 char.' class="description" maxlength='1000'></textarea><br>
         <?php if (isset($_POST['button'])) {
             if ($sanitized_description !== $description) {
                 $check = false;
