@@ -1,5 +1,5 @@
 <?php
-require 'api/src/php/access.php';
+require 'access.php';
 
 if (isset($_POST['button'])) {
     $name = $_POST['name'];
@@ -111,7 +111,7 @@ if (isset($_POST['button'])) {
                 }
 
                 $query->execute();
-                echo '<sapn>' . 'envoyé avec succes'.'</span>' ;
+                echo '<span>' . 'envoyé avec succes'.'</span>' ;
                 // mail($to, $email_subject, $email_body, $headers);
                 // echo 'check your mails!';
             } else {
