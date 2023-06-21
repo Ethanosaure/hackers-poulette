@@ -15,9 +15,9 @@ if (isset($_POST['button'])) {
         $height = $file_info[1];
         $file_allowed_image = array('png', 'jpg', 'gif');
         $file_extension = pathinfo($_FILES["file"]['name'], PATHINFO_EXTENSION);
-        $target_dir = 'images';
+        $target_dir = './images';
         $filename = basename($_FILES['file']['name']);
-        $target_path = $target_dir . '/' . $filename;
+        $target_path = $target_dir . $filename;
 
         // check if valid extension file
         if (!in_array($file_extension, $file_allowed_image)) {
@@ -39,21 +39,8 @@ if (isset($_POST['button'])) {
                 'type' => 'error',
                 'message' => 'Image dimensions should be within 300x200.'
             );
-        } else {
-            // Uploading success
-            if (move_uploaded_file($_FILES['file']['tmp_name'], $target_path)) {
-                $response = array (
-                    'type' => 'success',
-                    'message' => 'image successfuly uploaded'
-                );
-            }
-            // Uploading failed
-            else {
-                $response = array(
-                    'type' => 'error',
-                    'message' => 'Problem in uploading the image file.'
-                );
-            }
+        } 
+        move_uploaded_file($_FILES['file']['tmp_name'], $target_path)
         }
     }
 
