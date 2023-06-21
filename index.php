@@ -108,7 +108,7 @@ if (isset($_POST['button'])) {
                 echo '<span>' . 'envoyé avec succes'.'</span>' ;
                 sendmail();
             } else {
-                echo '<span>' . 'error: please enter your information correctly'.'</span>' ;
+                echo '<span>'.'error: please enter your information correctly'.'</span>' ;
             }
         }
     }
