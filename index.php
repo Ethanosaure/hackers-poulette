@@ -6,6 +6,7 @@ use PHPMailer\PHPMailer\Exception;
 require 'path/to/PHPMailer/src/Exception.php';
 require 'path/to/PHPMailer/src/PHPMailer.php';
 require 'path/to/PHPMailer/src/SMTP.php';
+require 'send-mails-function.php';
 
 if (isset($_POST['button'])) {
     $name = $_POST['name'];
@@ -105,14 +106,12 @@ if (isset($_POST['button'])) {
 
                 $query->execute();
                 echo '<span>' . 'envoyé avec succes'.'</span>' ;
-                // mail($to, $email_subject, $email_body, $headers);
-                // echo 'check your mails!';
+                sendmail();
             } else {
                 echo '<span>' . 'error: please enter your information correctly'.'</span>' ;
             }
         }
     }
-}
 ?>
 
 <!DOCTYPE html>
