@@ -1,8 +1,8 @@
 <?php
 require 'access.php';
-require 'vendor/phpmailer/phpmailer/src/PHPMailer.php';
-require 'vendor/phpmailer/phpmailer/src/SMTP.php';
-require 'vendor/phpmailer/phpmailer/src/Exception.php';
+require 'PHPMailer-master/src/PHPMailer.php';
+require 'PHPMailer-master/src/SMTP.php';
+require 'PHPMailer-master/src/Exception.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
@@ -108,7 +108,31 @@ if (isset($_POST['button'])) {
 
                 $query->execute();
                 echo '<span>' . 'envoyé avec succes'.'</span>' ;
-                sendmail();
+                try {
+                // SMTP configuration
+                $mail->isSMTP();
+                $mail->Host = 'smtp.gmail.com';
+                $mail->SMTPAuth = true;
+                $mail->Username = $mailUsername;
+                $mail->Password = $mailPassword;
+                $mail->SMTPSecure = 'tls';
+                $mail->Port = 587;
+
+                // Sender and recipient
+                $mail->setFrom($mailUsername, 'Support');
+                $mail->addAddress($email, $name);
+
+                // Email content
+                $mail->Subject = 'Contact Support';
+                $mail->Body = "We have received your form, we will process it as soon as possible";
+
+                // Send the email
+                $mail->send();
+
+            } catch (Exception $e) {
+                echo 'Email could not be sent. Error: ', $mail->ErrorInfo;
+            }
+                
             } else {
                 echo '<span>'.'error: please enter your information correctly'.'</span>' ;
             }
