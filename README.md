@@ -7,6 +7,7 @@ creation of a contact support web page containing :
 -validation and sanitized inputs  
 -honeypot  
 -possibility to send image on the form    
+-sending confirmation mail when validation of the form
 
 The site has been deployed on webhost.
 
