@@ -1,30 +1,33 @@
 <?php
+require 'config.php';
 function sendmail(){
-/**
- * This example shows sending a message using PHP's mail() function.
- */
+try {
+                // SMTP configuration
+                $mail->isSMTP();
+                $mail->Host = 'smtp.gmail.com';
+                $mail->SMTPAuth = true;
+                $mail->Username = $mailUsername;
+                $mail->Password = $mailPassword;
+                $mail->SMTPSecure = 'tls';
+                $mail->Port = 587;
 
-//Import the PHPMailer class into the global namespace
-use PHPMailer\PHPMailer\PHPMailer;
+                // Sender and recipient
+                $mail->setFrom($mailUsername, 'Support');
+                $mail->addAddress($email, $name);
 
-require './vendor/autoload.php';
-require 'index.php';
+                // Email content
+                $mail->Subject = 'Support';
+                $mail->Body = "It's finally working";
 
-//Create a new PHPMailer instance
-$mail = new PHPMailer();
-//Set who the message is to be sent from
-$mail->setFrom('diasmarquesethan@gmail.com', 'First Last');
-//Set who the message is to be sent to
-$mail->addAddress($_POST['email'], $_POST['firstname']);
-//Set the subject line
-$mail->Subject = 'PHPMailer mail() test';
-//Replace the plain text body with one created manually
-$mail->AltBody = 'a supercool message';
+                // Send the email
+                $mail->send();
 
-//send the message, check for errors
-if (!$mail->send()) {
-    echo 'Mailer Error: ' . $mail->ErrorInfo;
-} else {
-    echo 'Message sent!';
-}
-}
+            } catch (Exception $e) {
+                echo 'Email could not be sent. Error: ', $mail->ErrorInfo;
+            }
+
+         catch (Exception $e) {
+            die('Error: ' . $e->getMessage());
+        }
+    }
+?>
