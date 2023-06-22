@@ -1,8 +1,15 @@
 
 # PHP Project
 
-creating a contact support web page.  
-containing html form with php functions to send and access to database.
+creation of a contact support web page containing :  
+-html form  
+-php functions to send and access to database  
+-validation and sanitized inputs  
+-honeypot  
+-CSS  
+-possibility to send image on the form    
+
+The site has been deployed on webhost.
 
 ## screenshot
 
