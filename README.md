@@ -3,7 +3,7 @@
 
 creation of a contact support web page containing :  
 -html form  
--php functions to send and access to database
+-php functions to send and access to database  
 -validation and sanitized inputs  
 -honeypot  
 -possibility to send image on the form    
